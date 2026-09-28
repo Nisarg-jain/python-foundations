@@ -1,14 +1,10 @@
-def display_initialization() -> None:
-    # Top and bottom boundaries using repetition
-    print("#" * 24)
-    print("MODEL INITIALIZATION")
-    print("#" * 24)
+total_samples = input("Enter total dataset samples: ")
+batch_size = input("Enter batch size: ")
 
-    # Dynamic loading indicators
-    print("Loading" + "." * 1)
-    print("Loading" + "." * 2)
-    print("Loading" + "." * 3)
+samples_count = int(total_samples)
+batch_count = int(batch_size)
 
+full_batches = samples_count // batch_count
+remaining_samples = samples_count % batch_count
 
-if __name__ == "__main__":
-    display_initialization()
+print(f"Full Batches: {full_batches} | Remaining Samples: {remaining_samples}")
