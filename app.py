@@ -1,21 +1,23 @@
-course_title = "Python for Machine Learning"
-documentation = """
-Feature Extraction Pipeline:
-- Extracts token prefixes
-- Inspects first and last characters
-"""
+first_name = "Nisarg"
+last_name = "Jain"
 
-print(documentation)
+# Formatted string (f-string) interpolation
+message = f"{first_name} [{last_name}] is training neural networks"
+print(message)
 
-first_char = course_title[0]
-last_char = course_title[-1]
-print(f"First character: {first_char}")
-print(f"Last character: {last_char}")
+# General function vs string methods
+raw_query = "   Natural Language Processing with Python   "
+print(len(raw_query))
 
-prefix = course_title[0:6]
-suffix = course_title[-8:]
-full_copy = course_title[:]
+cleaned_query = raw_query.strip()
+print(cleaned_query.upper())
+print(cleaned_query.lower())
 
-print(f"Prefix: {prefix}")
-print(f"Suffix: {suffix}")
-print(f"Copy: {full_copy}")
+# Finding indices and replacement (returns new string)
+print(cleaned_query.find("Language"))
+modified_query = cleaned_query.replace("Python", "PyTorch")
+print(modified_query)
+
+# Membership test with 'in' operator (boolean)
+has_nlp = "Language" in cleaned_query
+print(f"Contains 'Language': {has_nlp}")
