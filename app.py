@@ -1,10 +1,21 @@
-total_samples = input("Enter total dataset samples: ")
-batch_size = input("Enter batch size: ")
+course_title = "Python for Machine Learning"
+documentation = """
+Feature Extraction Pipeline:
+- Extracts token prefixes
+- Inspects first and last characters
+"""
 
-samples_count = int(total_samples)
-batch_count = int(batch_size)
+print(documentation)
 
-full_batches = samples_count // batch_count
-remaining_samples = samples_count % batch_count
+first_char = course_title[0]
+last_char = course_title[-1]
+print(f"First character: {first_char}")
+print(f"Last character: {last_char}")
 
-print(f"Full Batches: {full_batches} | Remaining Samples: {remaining_samples}")
+prefix = course_title[0:6]
+suffix = course_title[-8:]
+full_copy = course_title[:]
+
+print(f"Prefix: {prefix}")
+print(f"Suffix: {suffix}")
+print(f"Copy: {full_copy}")
