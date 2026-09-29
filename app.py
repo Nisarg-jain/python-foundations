@@ -1,28 +1,26 @@
-import math
+# 1. Base property pricing setup
+house_price = 1_000_000
+has_good_credit = True
 
-# 1. Division variations and powers
-loss_value = 10 / 3
-epoch_step = 10 // 3
-scale_factor = 2 ** 4
-remainder = 10 % 3
+# 2. Conditional branch to determine required down payment percentage
+if has_good_credit:
+    down_payment_rate = 0.10
+else:
+    down_payment_rate = 0.20
 
-print(f"Float division: {loss_value}")
-print(f"Floor division: {epoch_step}")
-print(f"Power: {scale_factor}")
-print(f"Remainder: {remainder}")
+down_payment = house_price * down_payment_rate
 
-# 2. Augmented assignment
-current_learning_rate = 0.1
-current_learning_rate *= 0.5
-print(f"Adjusted LR: {current_learning_rate}")
+print(f"Base Price: ${house_price:,}")
+print(f"Down Payment Required: ${down_payment:,.2f}")
 
-# 3. Operator precedence: () -> ** -> * / // % -> + -
-precedence_result = (10 + 2) * 3 ** 2 / 2
-print(f"Precedence result: {precedence_result}")
+# 3. Multi-branch demonstration with temperature states
+temperature = 22
 
-# 4. Built-in functions and math module
-raw_score = -4.72
-print(f"Absolute: {abs(raw_score)}")
-print(f"Rounded: {round(raw_score, 1)}")
-print(f"Ceil: {math.ceil(4.1)}")
-print(f"Floor: {math.floor(4.9)}")
+if temperature > 30:
+    weather_report = "Hot day: hydrate frequently."
+elif temperature < 15:
+    weather_report = "Cold day: wear warm clothing."
+else:
+    weather_report = "Moderate day: optimal conditions."
+
+print(f"Status ({temperature}°C): {weather_report}")
