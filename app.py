@@ -1,26 +1,22 @@
-# 1. Base property pricing setup
-house_price = 1_000_000
+# 1. Applicant profile criteria
+has_high_income = False
 has_good_credit = True
+has_criminal_record = False
 
-# 2. Conditional branch to determine required down payment percentage
-if has_good_credit:
-    down_payment_rate = 0.10
+# 2. Conjunction (and) validation
+if has_high_income and has_good_credit:
+    print("Loan Approved: Met both income and credit requirements.")
 else:
-    down_payment_rate = 0.20
+    print("Loan Rejected: Requires both high income and good credit.")
 
-down_payment = house_price * down_payment_rate
-
-print(f"Base Price: ${house_price:,}")
-print(f"Down Payment Required: ${down_payment:,.2f}")
-
-# 3. Multi-branch demonstration with temperature states
-temperature = 22
-
-if temperature > 30:
-    weather_report = "Hot day: hydrate frequently."
-elif temperature < 15:
-    weather_report = "Cold day: wear warm clothing."
+# 3. Negation (not) with conjunction (and)
+if has_good_credit and not has_criminal_record:
+    print("Secondary Review Approved: Good credit standing with clear record.")
 else:
-    weather_report = "Moderate day: optimal conditions."
+    print("Secondary Review Rejected: Failed credit or background check.")
 
-print(f"Status ({temperature}°C): {weather_report}")
+# 4. Short-circuit evaluation demonstration
+# If the first value is truthy, 'or' returns it immediately without reading the second
+fallback_user = None
+current_user = fallback_user or "Default_User_Session"
+print(f"Active Session: {current_user}")
