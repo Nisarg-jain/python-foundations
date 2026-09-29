@@ -1,23 +1,28 @@
-first_name = "Nisarg"
-last_name = "Jain"
+import math
 
-# Formatted string (f-string) interpolation
-message = f"{first_name} [{last_name}] is training neural networks"
-print(message)
+# 1. Division variations and powers
+loss_value = 10 / 3
+epoch_step = 10 // 3
+scale_factor = 2 ** 4
+remainder = 10 % 3
 
-# General function vs string methods
-raw_query = "   Natural Language Processing with Python   "
-print(len(raw_query))
+print(f"Float division: {loss_value}")
+print(f"Floor division: {epoch_step}")
+print(f"Power: {scale_factor}")
+print(f"Remainder: {remainder}")
 
-cleaned_query = raw_query.strip()
-print(cleaned_query.upper())
-print(cleaned_query.lower())
+# 2. Augmented assignment
+current_learning_rate = 0.1
+current_learning_rate *= 0.5
+print(f"Adjusted LR: {current_learning_rate}")
 
-# Finding indices and replacement (returns new string)
-print(cleaned_query.find("Language"))
-modified_query = cleaned_query.replace("Python", "PyTorch")
-print(modified_query)
+# 3. Operator precedence: () -> ** -> * / // % -> + -
+precedence_result = (10 + 2) * 3 ** 2 / 2
+print(f"Precedence result: {precedence_result}")
 
-# Membership test with 'in' operator (boolean)
-has_nlp = "Language" in cleaned_query
-print(f"Contains 'Language': {has_nlp}")
+# 4. Built-in functions and math module
+raw_score = -4.72
+print(f"Absolute: {abs(raw_score)}")
+print(f"Rounded: {round(raw_score, 1)}")
+print(f"Ceil: {math.ceil(4.1)}")
+print(f"Floor: {math.floor(4.9)}")
