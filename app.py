@@ -1,67 +1,26 @@
-# ==============================================================================
-# 1. UPGRADED GUESSING GAME (Crash-proof, Boundary-checked, while-else)
-# ==============================================================================
-SECRET_NUMBER = 9
-GUESS_LIMIT = 3
-guess_count = 0
+# --- For Loops & Range Traversals ---
 
-print("--- Guessing Game Started (Range: 1-10) ---")
+# 1. Sequence and Range Iteration
+total_cart_cost = 0
+prices = [10, 25, 45, 90]
 
-while guess_count < GUESS_LIMIT:
-    raw_input = input("Enter your guess: ").strip()
+for price in prices:
+    total_cart_cost += price
 
-    # Defensive check: ensure input is an integer before casting
-    if not raw_input.isdigit():
-        print("Invalid input! Please enter a positive integer.")
-        continue  # Do not penalize guess count on malformed input
+print(f"Total Cart Value: ${total_cart_cost}")
 
-    guess = int(raw_input)
-    guess_count += 1
+# 2. Cartesian Coordinates via Nested Loops
+print("\n--- Coordinate Grid (x, y) ---")
+for x in range(3):
+    for y in range(2):
+        print(f"({x}, {y})")
 
-    if guess == SECRET_NUMBER:
-        print(f"Brilliant! You guessed it in {guess_count} attempt(s)!\n")
-        break
-else:
-    # Executes only if the while loop terminates via condition (guess_count == GUESS_LIMIT)
-    print(f"Game Over! You exhausted all {GUESS_LIMIT} attempts. Secret was {SECRET_NUMBER}.\n")
+# 3. Shape Generation (Nested Loop Matrix Traversal)
+print("\n--- Matrix-Generated 'F' Shape ---")
+f_shape_blueprint = [5, 2, 5, 2, 2]
 
-
-# ==============================================================================
-# 2. UPGRADED CAR ENGINE (Finite State Machine pattern, Sanitized Input)
-# ==============================================================================
-print("--- Car CLI Engine Initialized. Type 'help' for commands. ---")
-
-is_car_running = False
-
-while True:
-    # Single-point sanitization: strip surrounding whitespace and lowercase
-    command = input("> ").strip().lower()
-
-    if command == "start":
-        if is_car_running:
-            print("Warning: Engine is already idling! Cannot start again.")
-        else:
-            is_car_running = True
-            print("Engine ignited... Ready to drive.")
-
-    elif command == "stop":
-        if not is_car_running:
-            print("Warning: Car is already at a dead stop.")
-        else:
-            is_car_running = False
-            print("Engine shut off. Handbrake engaged.")
-
-    elif command == "help":
-        print("""
-Supported Commands:
-  start - Fire up the car engine
-  stop  - Turn off the engine
-  quit  - Exit the CLI simulator
-        """)
-
-    elif command == "quit":
-        print("Exiting simulator. Safe travels!")
-        break
-
-    else:
-        print(f"Unknown command: '{command}'. Type 'help' for valid actions.")
+for row_width in f_shape_blueprint:
+    row_buffer = ""
+    for _ in range(row_width):
+        row_buffer += "x"
+    print(row_buffer)
