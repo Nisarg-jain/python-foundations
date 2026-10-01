@@ -1,20 +1,24 @@
-"""Demonstrating concrete return values vs display side effects."""
+"""Reusable string transformation module for emoji parsing."""
 
-def compute_tax(subtotal: float, rate: float = 0.18) -> float:
-    """Computes and returns the tangible tax amount."""
-    return subtotal * rate
+def convert_emojis(message: str) -> str:
+    """Transforms symbolic text emoticons into Unicode emoji representations.
+
+    Takes a raw string, isolates whitespace-delimited tokens, and maps
+    known emoticon keys to their respective Unicode characters.
+    """
+    emoji_mapping = {
+        ":)": "😊",
+        ":(": "🙁",
+        ";)": "😉",
+        "<3": "❤️️"
+    }
+
+    tokens = message.split(" ")
+    translated_tokens = [emoji_mapping.get(token, token) for token in tokens]
+    return " ".join(translated_tokens)
 
 
-def announce_tax(subtotal: float, rate: float = 0.18) -> None:
-    """Prints the tax directly to terminal without returning data."""
-    print(f"[DISPLAY ONLY] Tax amount: {subtotal * rate}")
-
-
-# 1. Concrete value: captured and reusable in further math
-tangible_tax = compute_tax(1000.0)
-final_bill = 1000.0 + tangible_tax
-print(f"Final payable bill: {final_bill}")
-
-# 2. Hollow print: holds nothing (None), cannot be reused
-hollow_result = announce_tax(1000.0)
-print(f"Captured variable holds: {hollow_result}")
+# --- Driver Code (I/O decoupled from transformation logic) ---
+user_input = input("> ")
+result = convert_emojis(user_input)
+print(result)
