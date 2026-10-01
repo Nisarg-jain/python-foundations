@@ -1,27 +1,37 @@
-"""Robust user input validation and ratio calculation engine."""
+"""Object-oriented domain model demonstrating state initialization via __init__."""
 
-def calculate_risk_ratio() -> None:
-    """Calculates risk factor by dividing fixed income by validated age.
+class CoordinatePoint:
+    """Represents a 2D geometric coordinate point."""
 
-    Safely handles invalid literal conversions and division by zero.
-    """
-    base_income = 50_000
+    def __init__(self, x: int | float, y: int | float) -> None:
+        # Bind parameter inputs directly to instance state
+        self.x = x
+        self.y = y
 
-    try:
-        raw_age = input("Enter age: ")
-        age = int(raw_age)
-
-        risk_ratio = base_income / age
-        print(f"Calculated Risk Ratio: {risk_ratio:.2f}")
-
-    except ValueError:
-        # Triggered when int() fails to parse non-numeric strings
-        print("Error: Input must be a valid integer literal.")
-
-    except ZeroDivisionError:
-        # Defensive check against division by zero in financial formulas
-        print("Error: Age cannot be zero.")
+    def render(self) -> None:
+        """Outputs current coordinate state to stdout."""
+        print(f"CoordinatePoint rendered at: ({self.x}, {self.y})")
 
 
-if __name__ == "__main__":
-    calculate_risk_ratio()
+class Person:
+    """Represents an individual entity with identity and behavioral methods."""
+
+    def __init__(self, name: str) -> None:
+        self.name = name
+
+    def talk(self) -> None:
+        """Greets with the instance-bound name attribute."""
+        print(f"Hi, I am {self.name}.")
+
+
+# 1. Coordinate Point Instantiation
+origin = CoordinatePoint(0, 0)
+target = CoordinatePoint(1920, 1080)
+origin.render()
+target.render()
+
+# 2. Entity State Isolation
+engineer = Person("Alex")
+lead = Person("Sarah")
+engineer.talk()
+lead.talk()
