@@ -1,20 +1,20 @@
-"""Positional vs Keyword Arguments demonstration."""
+"""Demonstrating concrete return values vs display side effects."""
 
-def calculate_invoice(subtotal: float, tax_rate: float, discount: float) -> float:
-    """Calculates final total after applying tax and flat discount."""
-    tax_amount = subtotal * tax_rate
-    final_total = (subtotal + tax_amount) - discount
-    return round(final_total, 2)
+def compute_tax(subtotal: float, rate: float = 0.18) -> float:
+    """Computes and returns the tangible tax amount."""
+    return subtotal * rate
 
 
-# 1. Positional Arguments (Order strictly defines parameter mapping)
-total_a = calculate_invoice(100.0, 0.18, 10.0)
-print(f"Total A (Positional): ${total_a}")
+def announce_tax(subtotal: float, rate: float = 0.18) -> None:
+    """Prints the tax directly to terminal without returning data."""
+    print(f"[DISPLAY ONLY] Tax amount: {subtotal * rate}")
 
-# 2. Keyword Arguments (Explicit labels; order does not matter)
-total_b = calculate_invoice(tax_rate=0.18, discount=10.0, subtotal=100.0)
-print(f"Total B (Keyword):    ${total_b}")
 
-# 3. Hybrid Call (Positional must always precede Keyword arguments)
-total_c = calculate_invoice(100.0, discount=10.0, tax_rate=0.18)
-print(f"Total C (Hybrid):     ${total_c}")
+# 1. Concrete value: captured and reusable in further math
+tangible_tax = compute_tax(1000.0)
+final_bill = 1000.0 + tangible_tax
+print(f"Final payable bill: {final_bill}")
+
+# 2. Hollow print: holds nothing (None), cannot be reused
+hollow_result = announce_tax(1000.0)
+print(f"Captured variable holds: {hollow_result}")
