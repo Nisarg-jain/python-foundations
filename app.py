@@ -1,61 +1,20 @@
-# ==============================================================================
-# 1. SEQUENCE UNPACKING (Destructuring Pattern)
-# ==============================================================================
-point_3d = (100, 250, 45)
+"""Positional vs Keyword Arguments demonstration."""
 
-# Pythonic unpacking - avoids repetitive manual indexing
-pos_x, pos_y, pos_z = point_3d
-print(f"Coordinates: X={pos_x}, Y={pos_y}, Z={pos_z}")
-
-
-# ==============================================================================
-# 2. DICTIONARY LOOKUPS & DEFENSIVE ACCESS (O(1) Hash Map)
-# ==============================================================================
-user_profile = {
-    "username": "dev_engineer",
-    "role": "admin",
-    "login_count": 42
-}
-
-# Defensive retrieval: prevents unhandled KeyError exceptions
-contact_email = user_profile.get("email", "support@system.local")
-access_level = user_profile.get("role", "guest")
-
-print(f"User: {user_profile['username']} | Role: {access_level} | Contact: {contact_email}")
+def calculate_invoice(subtotal: float, tax_rate: float, discount: float) -> float:
+    """Calculates final total after applying tax and flat discount."""
+    tax_amount = subtotal * tax_rate
+    final_total = (subtotal + tax_amount) - discount
+    return round(final_total, 2)
 
 
-# ==============================================================================
-# 3. TEXT TOKENIZATION & MAPPING (Emoji Converter Engine)
-# ==============================================================================
-def parse_emojis(sentence: str) -> str:
-    """Tokenizes an input string and maps symbolic text tokens to emojis."""
-    emoji_mapping = {
-        ":)": "😊",
-        ":(": "🙁",
-        ";)": "😉",
-        "<3": "❤️️"
-    }
-    
-    tokens = sentence.strip().split(" ")
-    transformed_tokens = [emoji_mapping.get(token, token) for token in tokens]
-    return " ".join(transformed_tokens)
+# 1. Positional Arguments (Order strictly defines parameter mapping)
+total_a = calculate_invoice(100.0, 0.18, 10.0)
+print(f"Total A (Positional): ${total_a}")
 
+# 2. Keyword Arguments (Explicit labels; order does not matter)
+total_b = calculate_invoice(tax_rate=0.18, discount=10.0, subtotal=100.0)
+print(f"Total B (Keyword):    ${total_b}")
 
-sample_message = "Good morning :) I hope you have a great day <3"
-parsed_message = parse_emojis(sample_message)
-print(f"\nOriginal: {sample_message}")
-print(f"Parsed:   {parsed_message}")
-
-
-# ==============================================================================
-# 4. MODULAR FUNCTIONS & STACK ISOLATION
-# ==============================================================================
-def display_system_status(service_name: str, is_active: bool) -> None:
-    """Prints a formatted health status message for a given service."""
-    status_indicator = "ONLINE" if is_active else "OFFLINE"
-    print(f"[STATUS] Service '{service_name}' is currently {status_indicator}.")
-
-
-print("\n--- System Diagnostics ---")
-display_system_status("Database", True)
-display_system_status("PaymentGateway", False)
+# 3. Hybrid Call (Positional must always precede Keyword arguments)
+total_c = calculate_invoice(100.0, discount=10.0, tax_rate=0.18)
+print(f"Total C (Hybrid):     ${total_c}")
