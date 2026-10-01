@@ -1,24 +1,27 @@
-"""Reusable string transformation module for emoji parsing."""
+"""Robust user input validation and ratio calculation engine."""
 
-def convert_emojis(message: str) -> str:
-    """Transforms symbolic text emoticons into Unicode emoji representations.
+def calculate_risk_ratio() -> None:
+    """Calculates risk factor by dividing fixed income by validated age.
 
-    Takes a raw string, isolates whitespace-delimited tokens, and maps
-    known emoticon keys to their respective Unicode characters.
+    Safely handles invalid literal conversions and division by zero.
     """
-    emoji_mapping = {
-        ":)": "😊",
-        ":(": "🙁",
-        ";)": "😉",
-        "<3": "❤️️"
-    }
+    base_income = 50_000
 
-    tokens = message.split(" ")
-    translated_tokens = [emoji_mapping.get(token, token) for token in tokens]
-    return " ".join(translated_tokens)
+    try:
+        raw_age = input("Enter age: ")
+        age = int(raw_age)
+
+        risk_ratio = base_income / age
+        print(f"Calculated Risk Ratio: {risk_ratio:.2f}")
+
+    except ValueError:
+        # Triggered when int() fails to parse non-numeric strings
+        print("Error: Input must be a valid integer literal.")
+
+    except ZeroDivisionError:
+        # Defensive check against division by zero in financial formulas
+        print("Error: Age cannot be zero.")
 
 
-# --- Driver Code (I/O decoupled from transformation logic) ---
-user_input = input("> ")
-result = convert_emojis(user_input)
-print(result)
+if __name__ == "__main__":
+    calculate_risk_ratio()
