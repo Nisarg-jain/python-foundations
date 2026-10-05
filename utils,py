@@ -1,0 +1,12 @@
+"""General numerical processing and array utility functions."""
+
+def find_max(numbers: list[int | float]) -> int | float:
+    """Finds and returns the maximum numerical value in a non-empty sequence."""
+    if not numbers:
+        raise ValueError("Cannot calculate maximum of an empty list.")
+
+    maximum = numbers[0]
+    for number in numbers:
+        if number > maximum:
+            maximum = number
+    return maximum
