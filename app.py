@@ -1,15 +1,30 @@
-"""Driver script demonstrating package-level modular architecture."""
+"""Simulating stochastic systems using Python's built-in random module."""
 
-from ecommerce.shipping import calculate_shipping, calculate_tax
+import random
 
-order_weight = 3.5  # in kilograms
-order_subtotal = 1200.0
 
-shipping_cost = calculate_shipping(order_weight)
-tax_amount = calculate_tax(order_subtotal)
-final_total = order_subtotal + shipping_cost + tax_amount
+class Dice:
+    """Represents a pair of standard six-sided dice."""
 
-print(f"Order Subtotal: Rs. {order_subtotal:.2f}")
-print(f"Shipping Cost:  Rs. {shipping_cost:.2f}")
-print(f"Estimated Tax:  Rs. {tax_amount:.2f}")
-print(f"Total Payable:  Rs. {final_total:.2f}")
+    def __init__(self, sides: int = 6) -> None:
+        self.sides = sides
+
+    def roll(self) -> tuple[int, int]:
+        """Simulates rolling two dice and returns the outcome as a tuple."""
+        first_die = random.randint(1, self.sides)
+        second_die = random.randint(1, self.sides)
+        return first_die, second_die
+
+
+# --- Driver Code ---
+dice = Dice()
+
+# Perform sample rolls and demonstrate tuple unpacking
+for round_number in range(1, 4):
+    first, second = dice.roll()
+    print(f"Round {round_number}: Rolled ({first}, {second}) -> Total: {first + second}")
+
+# Demonstrating random.choice from a pool of players
+roster = ["Alex", "Dev", "Sarah", "Priya"]
+selected_starter = random.choice(roster)
+print(f"\nStarting Player: {selected_starter}")
