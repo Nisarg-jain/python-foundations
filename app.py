@@ -1,9 +1,15 @@
-"""Driver script demonstrating module imports and utility consumption."""
+"""Driver script demonstrating package-level modular architecture."""
 
-from utils import find_max
+from ecommerce.shipping import calculate_shipping, calculate_tax
 
-data_sample = [15, 3, 89, 42, 7, 98, 23]
-peak_value = find_max(data_sample)
+order_weight = 3.5  # in kilograms
+order_subtotal = 1200.0
 
-print(f"Dataset: {data_sample}")
-print(f"Maximum Value: {peak_value}")
+shipping_cost = calculate_shipping(order_weight)
+tax_amount = calculate_tax(order_subtotal)
+final_total = order_subtotal + shipping_cost + tax_amount
+
+print(f"Order Subtotal: Rs. {order_subtotal:.2f}")
+print(f"Shipping Cost:  Rs. {shipping_cost:.2f}")
+print(f"Estimated Tax:  Rs. {tax_amount:.2f}")
+print(f"Total Payable:  Rs. {final_total:.2f}")
