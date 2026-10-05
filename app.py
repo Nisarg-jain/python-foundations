@@ -1,37 +1,40 @@
-"""Object-oriented domain model demonstrating state initialization via __init__."""
+"""Demonstrating class inheritance, method reuse, and specialization."""
 
-class CoordinatePoint:
-    """Represents a 2D geometric coordinate point."""
-
-    def __init__(self, x: int | float, y: int | float) -> None:
-        # Bind parameter inputs directly to instance state
-        self.x = x
-        self.y = y
-
-    def render(self) -> None:
-        """Outputs current coordinate state to stdout."""
-        print(f"CoordinatePoint rendered at: ({self.x}, {self.y})")
-
-
-class Person:
-    """Represents an individual entity with identity and behavioral methods."""
+class Mammal:
+    """Base parent class defining shared mammalian behaviors."""
 
     def __init__(self, name: str) -> None:
         self.name = name
 
-    def talk(self) -> None:
-        """Greets with the instance-bound name attribute."""
-        print(f"Hi, I am {self.name}.")
+    def walk(self) -> None:
+        """Generic locomotion method common to all mammals."""
+        print(f"{self.name} is walking.")
 
 
-# 1. Coordinate Point Instantiation
-origin = CoordinatePoint(0, 0)
-target = CoordinatePoint(1920, 1080)
-origin.render()
-target.render()
+class Dog(Mammal):
+    """Derived child class specializing Mammal with canine behaviors."""
 
-# 2. Entity State Isolation
-engineer = Person("Alex")
-lead = Person("Sarah")
-engineer.talk()
-lead.talk()
+    def bark(self) -> None:
+        """Canine-specific behavior."""
+        print(f"{self.name} says: Woof! Woof!")
+
+
+class Cat(Mammal):
+    """Derived child class specializing Mammal with feline behaviors."""
+
+    def meow(self) -> None:
+        """Feline-specific behavior."""
+        print(f"{self.name} says: Meow!")
+
+
+# 1. Instantiating derived objects
+dog = Dog("Buddy")
+cat = Cat("Luna")
+
+# 2. Invoking inherited methods from the Mammal parent class
+dog.walk()
+cat.walk()
+
+# 3. Invoking specialized child methods
+dog.bark()
+cat.meow()
